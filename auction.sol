@@ -22,4 +22,16 @@ contract Auction {
     event LogBid(address bidder, uint bid, address highestBidder, uint highestBid, uint highestBindingBid);
     event LogWithdrawal(address withdrawer, address withdrawalAccount, uint amount);
     event LogCanceled();
+
+
+    constructor(address _owner, uint _bidIncrement, uint  _startBlock, uint _endBlock, string memory _ipfsHash){
+        require(_startBlock >= _endBlock);
+        require(_startBlock < block.number);
+
+        owner = _owner;
+        bidIncrement = _bidIncrement;
+        startBlock = _startBlock;
+        endBlock = _endBlock;
+        ipfsHash = _ipfsHash;
+    }
 }
